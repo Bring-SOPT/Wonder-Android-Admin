@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="56dp"
+              android:orientation="horizontal">
+    <RelativeLayout
+            android:id="@+id/btn_bottom_navi_main_tab"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+        <TextView
+                android:text="접수 대기"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:id="@+id/tv_waiting" android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true" android:textSize="18sp"
+                android:textColor="@color/selector_top_navi_tab_waiting_icon"/>
+    </RelativeLayout>
+    <RelativeLayout
+            android:id="@+id/btn_bottom_navi_map_tab"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+        <TextView
+                android:text="처리중"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:id="@+id/tv_ongoing" android:layout_centerInParent="true"
+                android:textSize="18sp"
+                android:textColor="@color/selector_top_navi_tab_waiting_icon"/>
+    </RelativeLayout>
+    <RelativeLayout
+            android:id="@+id/btn_bottom_navi_my_page_tab"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+        <TextView
+                android:text="완료"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:id="@+id/tv_done" android:layout_centerInParent="true"
+                android:textSize="18sp"
+                android:textColor="@color/selector_top_navi_tab_waiting_icon"/>
+    </RelativeLayout>
+</LinearLayout>
