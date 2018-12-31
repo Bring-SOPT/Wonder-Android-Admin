@@ -32,6 +32,11 @@ class WaitingListRecyclerViewAdapter(var ctx: Context, val dataList: ArrayList<W
             val waitingAcceptDialog :WaitingAcceptDialog = WaitingAcceptDialog(ctx)
             waitingAcceptDialog.show()
         }
+
+        holder.btn_deny.setOnClickListener {
+            val waitingDenyDialog = WaitingDenyDialog(ctx)
+            waitingDenyDialog.show()
+        }
     }
 
     inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
