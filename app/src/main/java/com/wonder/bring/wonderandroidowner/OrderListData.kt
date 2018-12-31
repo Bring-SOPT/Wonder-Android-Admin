@@ -1,6 +1,6 @@
-package com.wonder.bring.wonderandroidowner.WaitingList
+package com.wonder.bring.wonderandroidowner
 
-data class WaitingListData(
+data class OrderListData(
     var date : String,
     var time : String,
     var orderNum : Int,

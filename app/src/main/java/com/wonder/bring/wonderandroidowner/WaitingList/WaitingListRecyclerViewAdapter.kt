@@ -7,9 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import com.wonder.bring.wonderandroidowner.OrderListData
 import com.wonder.bring.wonderandroidowner.R
 
-class WaitingListRecyclerViewAdapter(var ctx: Context, val dataList: ArrayList<WaitingListData>) :
+class WaitingListRecyclerViewAdapter(var ctx: Context, val dataList: ArrayList<OrderListData>) :
     RecyclerView.Adapter<WaitingListRecyclerViewAdapter.Holder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
