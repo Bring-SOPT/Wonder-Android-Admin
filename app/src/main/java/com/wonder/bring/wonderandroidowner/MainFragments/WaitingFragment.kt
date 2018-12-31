@@ -7,13 +7,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.wonder.bring.wonderandroidowner.R
-import com.wonder.bring.wonderandroidowner.WaitingList.WaitingListData
+import com.wonder.bring.wonderandroidowner.OrderListData
 import com.wonder.bring.wonderandroidowner.WaitingList.WaitingListRecyclerViewAdapter
 import kotlinx.android.synthetic.main.fragment_waiting.*
 
 class WaitingFragment : Fragment() {
     lateinit var waitingListRecyclerViewAdapter: WaitingListRecyclerViewAdapter
-    var dataList: ArrayList<WaitingListData> = ArrayList()
+    var dataList: ArrayList<OrderListData> = ArrayList()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
@@ -38,7 +38,7 @@ class WaitingFragment : Fragment() {
         //임시데이터
 
         dataList.add(
-            WaitingListData(
+            OrderListData(
                 "2018.12.29",
                 "14:06",
                 1,
@@ -49,7 +49,7 @@ class WaitingFragment : Fragment() {
             )
         )
         dataList.add(
-            WaitingListData(
+            OrderListData(
                 "2018.12.29",
                 "14:08",
                 2,
@@ -60,7 +60,7 @@ class WaitingFragment : Fragment() {
             )
         )
         dataList.add(
-            WaitingListData(
+            OrderListData(
                 "2018.12.29",
                 "14:10",
                 3,
@@ -71,7 +71,7 @@ class WaitingFragment : Fragment() {
             )
         )
         dataList.add(
-            WaitingListData(
+            OrderListData(
                 "2019.01.01",
                 "01:23",
                 4,
