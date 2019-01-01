@@ -12,7 +12,12 @@ class WaitingAcceptDialog(ctx: Context):AlertDialog(ctx){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.dialog_waiting_accept)
 
-        btn_second_dialog_ok.setOnClickListener{
+
+        btn_waiting_accept_dialog_cancle.setOnClickListener {
+            dismiss()
+        }
+
+        btn_waiting_accept_dialog_ok.setOnClickListener{
 
             dismiss()
         }
