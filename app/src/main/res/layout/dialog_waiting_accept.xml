@@ -18,8 +18,9 @@
         <android.support.constraint.ConstraintLayout
                 android:layout_width="100dp"
                 android:layout_height="64dp"
-                android:id="@+id/btn_waiting_accept_dialog_5m" android:background="@drawable/border"
-                tools:layout_editor_absoluteY="51dp" tools:layout_editor_absoluteX="196dp">
+                android:id="@+id/btn_waiting_accept_dialog_5m"
+                tools:layout_editor_absoluteY="51dp" tools:layout_editor_absoluteX="196dp"
+                android:background="@drawable/border">
 
             <TextView
                     android:text="5분"
