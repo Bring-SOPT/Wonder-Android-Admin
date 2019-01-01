@@ -30,7 +30,7 @@ class WaitingListRecyclerViewAdapter(var ctx: Context, val dataList: ArrayList<O
         holder.tv_request.text = dataList[position].request
 
         holder.btn_accept.setOnClickListener {
-            val waitingAcceptDialog :WaitingAcceptDialog = WaitingAcceptDialog(ctx)
+            val waitingAcceptDialog = WaitingAcceptDialog(ctx)
             waitingAcceptDialog.show()
         }
 
