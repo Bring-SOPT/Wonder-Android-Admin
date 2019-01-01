@@ -1,18 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_margin="36dp"
-                android:layout_width="match_parent" android:layout_height="160dp">
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_margin="0dp"
+        android:layout_width="match_parent" android:layout_height="404dp">
     <RelativeLayout
-            android:layout_centerInParent="true"
             android:id="@+id/btn_waiting_deny_dialog_ok"
-            android:layout_margin="16dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="56dp" android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" android:layout_marginEnd="29dp"
+            android:layout_alignParentBottom="true" android:layout_marginBottom="12dp"
+            android:layout_marginRight="29dp" android:layout_width="120dp" android:background="@drawable/border">
         <TextView
                 android:paddingVertical="8dp"
                 android:paddingHorizontal="16dp"
                 android:text="확인"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content" android:layout_centerInParent="true"/>
+
+    </RelativeLayout>
+    <RelativeLayout
+            android:id="@+id/btn_waiting_deny_dialog_cancle"
+            android:layout_height="56dp" android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true" android:layout_marginBottom="12dp"
+            android:layout_width="120dp" android:layout_marginLeft="28dp"
+            android:layout_marginStart="28dp" android:background="@drawable/border">
+        <TextView
+                android:paddingVertical="8dp"
+                android:paddingHorizontal="16dp"
+                android:text="취소"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:layout_centerInParent="true"/>
+
+    </RelativeLayout>
+    <TextView
+            android:text="주문 거절 사유를 선택해주세요"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:layout_centerHorizontal="true"
+            android:layout_alignParentTop="true" android:id="@+id/textView2" android:layout_marginTop="25dp"/>
+    <RelativeLayout
+            android:id="@+id/btn_waiting_deny_dialog_outofstock"
+            android:layout_height="80dp" android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_width="120dp" android:layout_marginLeft="28dp"
+            android:layout_marginStart="28dp" android:background="@drawable/border" android:layout_marginTop="64dp">
+        <TextView
+                android:paddingVertical="8dp"
+                android:paddingHorizontal="16dp"
+                android:text="재료소진"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:layout_centerInParent="true"/>
+
+    </RelativeLayout>
+    <RelativeLayout
+            android:id="@+id/btn_waiting_deny_dialog_delay"
+            android:layout_height="80dp" android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" android:layout_marginEnd="28dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginRight="28dp" android:layout_width="120dp" android:background="@drawable/border"
+            android:layout_marginTop="64dp">
+
+        <TextView
+                android:paddingVertical="8dp"
+                android:paddingHorizontal="16dp"
+                android:text="주문 지연"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:layout_centerInParent="true"/>
+
+    </RelativeLayout>
+    <RelativeLayout
+            android:id="@+id/btn_waiting_deny_dialog_incorrect"
+            android:layout_height="80dp" android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_width="120dp" android:layout_marginLeft="28dp"
+            android:layout_marginStart="28dp" android:background="@drawable/border" android:layout_marginTop="160dp">
+        <TextView
+                android:paddingVertical="8dp"
+                android:paddingHorizontal="16dp"
+                android:text="고객 정보\n부정확"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:layout_centerInParent="true"/>
+
+    </RelativeLayout>
+    <RelativeLayout
+            android:id="@+id/btn_waiting_deny_dialog_storeend"
+            android:layout_height="80dp" android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" android:layout_marginEnd="28dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginRight="28dp" android:layout_width="120dp" android:background="@drawable/border"
+            android:layout_marginTop="160dp">
+
+        <TextView
+                android:paddingVertical="8dp"
+                android:paddingHorizontal="16dp"
+                android:text="영업 종료"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:layout_centerInParent="true"/>
+
+    </RelativeLayout>
+    <RelativeLayout
+            android:id="@+id/btn_waiting_deny_dialog_userinput"
+            android:layout_height="64dp" android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_width="256dp" android:layout_marginLeft="29dp"
+            android:layout_marginStart="28dp" android:background="@drawable/border"
+            android:layout_alignParentTop="true" android:layout_marginTop="256dp">
+
+        <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:layout_alignParentRight="true" android:layout_alignParentEnd="true"
+                android:layout_marginEnd="16dp" android:layout_alignParentBottom="true" android:id="@+id/editText"
+                android:layout_marginBottom="0dp" android:layout_marginRight="0dp" android:layout_marginTop="0dp"
+                android:layout_alignParentTop="true" android:layout_alignParentStart="true"
+                android:layout_marginLeft="0dp" android:layout_marginStart="25dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true" android:layout_centerHorizontal="true" android:hint="직접 입력"/>
     </RelativeLayout>
 </RelativeLayout>
