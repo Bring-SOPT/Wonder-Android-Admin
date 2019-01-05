@@ -9,6 +9,7 @@ import android.widget.Button
 import android.widget.TextView
 import com.wonder.bring.wonderandroidowner.OrderListData
 import com.wonder.bring.wonderandroidowner.R
+import com.wonder.bring.wonderandroidowner.WaitingList.OneLineMessageDialog
 
 
 class OngoingListRecyclerViewAdapter(val ctx: Context, val dataList: ArrayList<OrderListData>) :
@@ -30,8 +31,8 @@ class OngoingListRecyclerViewAdapter(val ctx: Context, val dataList: ArrayList<O
         holder.tv_request.text = dataList[position].request
 
         holder.btn_ready.setOnClickListener {
-            val ongoingReadyDialog = OngoingReadyDialog(ctx)
-            ongoingReadyDialog.show()
+            val oneLineMessageDialog = OneLineMessageDialog(ctx, "제조 완료 알림이 전송되었습니다.")
+            oneLineMessageDialog.show()
 
             holder.btn_ready.isEnabled = false
             holder.btn_gave.isEnabled = true
