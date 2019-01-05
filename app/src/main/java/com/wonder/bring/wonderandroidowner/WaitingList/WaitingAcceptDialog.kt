@@ -76,19 +76,6 @@ class WaitingAcceptDialog(ctx: Context): Dialog(ctx){
             oneLineMessageDialog.show()
         }
 
-        //취소버튼
-        btn_waiting_accept_dialog_cancle.setOnClickListener {
-            dismiss()
-        }
-
-        //확인버튼
-        //직접 입력에 값이 없으면 동작하지 않게 해야한다.
-        btn_waiting_accept_dialog_ok.setOnClickListener{
-
-            //버튼누르면 현재 다이얼로그 꺼지고 푸시알림 전송되었다는 다이얼로그 띄우기
-            dismiss()
-            oneLineMessageDialog.show()
-        }
     }
 
 }

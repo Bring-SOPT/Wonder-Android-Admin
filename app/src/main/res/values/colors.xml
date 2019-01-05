@@ -1,9 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimary">#fa7268</color>
     <color name="colorPrimaryDark">#00574b</color>
     <color name="colorAccent">#D81B60</color>
-
     <color name="tabOrange">#FF730D</color>
     <color name="tabGray">#808080</color>
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+    <color name="background">#eeeeee</color>
+    <color name="warmgray">#707070</color>
+    <color name="transparentblack">#aa000000 </color>
+
+    <color name="transparent">#00000000</color>
+    <color name="textcolor">#000000</color>
+    <color name="edittextcolor">#000000</color>
+
+    <color name="selfwriting">#eeeeee</color>
+    <color name="deliverybackground">#a5a5a5</color>
+
 </resources>
