@@ -18,6 +18,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun configureBottomNavigation(){
         vp_main_act_frag_pager.adapter = MainFragmentStatePagerAdapter(supportFragmentManager, 3)
+        vp_main_act_frag_pager.offscreenPageLimit = 3
 
         // ViewPager와 Tablayout을 엮어줍니다!
         tl_main_act_top_menu.setupWithViewPager(vp_main_act_frag_pager)
