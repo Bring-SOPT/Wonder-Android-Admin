@@ -23,7 +23,7 @@
         <android.support.constraint.ConstraintLayout
                 android:id="@+id/cl_rv_topbar"
                 android:layout_width="324dp"
-                      android:background="@color/warmgray"
+                      android:background="@color/selfwriting"
 
                       android:layout_height="30dp">
             <TextView

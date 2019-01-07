@@ -10,6 +10,8 @@
             android:layout_weight="1">
         <TextView
                 android:text="접수 대기"
+                android:fontFamily="@font/nanumsquareroundotfb"
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" android:id="@+id/tv_waiting" android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true" android:textSize="18sp"
@@ -22,6 +24,7 @@
             android:layout_weight="1">
         <TextView
                 android:text="처리중"
+                android:fontFamily="@font/nanumsquareroundotfb"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" android:id="@+id/tv_ongoing" android:layout_centerInParent="true"
                 android:textSize="18sp"
@@ -34,6 +37,7 @@
             android:layout_weight="1">
         <TextView
                 android:text="완료"
+                android:fontFamily="@font/nanumsquareroundotfb"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" android:id="@+id/tv_done" android:layout_centerInParent="true"
                 android:textSize="18sp"
