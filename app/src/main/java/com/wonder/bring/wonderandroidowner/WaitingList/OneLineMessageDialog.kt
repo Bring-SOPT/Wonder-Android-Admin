@@ -14,9 +14,8 @@ class OneLineMessageDialog(ctx: Context, val dMessage: String ) : Dialog(ctx){
 
         setMessage(dMessage)
 
-        btn_oneline_message_diaglog_ok.setOnClickListener {
-            dismiss()
-        }
+
+
     }
 
     private fun setMessage(message : String){
