@@ -18,4 +18,8 @@
     <color name="selfwriting">#eeeeee</color>
     <color name="deliverybackground">#a5a5a5</color>
 
+
+    <color name="doneitem">#e9e9e9</color>
+    <color name="doneitemtop">#f8f8f8</color>
+
 </resources>
