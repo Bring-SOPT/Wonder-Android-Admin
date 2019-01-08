@@ -17,6 +17,7 @@ class WaitingAcceptDialog(ctx: Context): Dialog(ctx){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.dialog_waiting_accept)
+        window.setBackgroundDrawableResource(R.color.transparent)
 
         initOnClickListener()
     }

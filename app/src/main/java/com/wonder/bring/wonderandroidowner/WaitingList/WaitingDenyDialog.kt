@@ -22,6 +22,7 @@ class WaitingDenyDialog(ctx: Context): Dialog(ctx){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.dialog_waiting_deny)
+        window.setBackgroundDrawableResource(R.color.transparent)
 
         initOnClickListener()
 
