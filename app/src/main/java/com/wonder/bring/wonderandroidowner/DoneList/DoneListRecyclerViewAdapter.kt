@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import com.wonder.bring.wonderandroidowner.OrderListData
+import com.wonder.bring.wonderandroidowner.Network.Get.OrderListData
 import com.wonder.bring.wonderandroidowner.R
 
 class DoneListRecyclerViewAdapter(var ctx: Context, val dataList: ArrayList<OrderListData>) :

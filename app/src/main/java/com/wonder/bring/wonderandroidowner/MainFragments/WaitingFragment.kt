@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.wonder.bring.wonderandroidowner.R
-import com.wonder.bring.wonderandroidowner.OrderListData
+import com.wonder.bring.wonderandroidowner.Network.Get.OrderListData
 import com.wonder.bring.wonderandroidowner.WaitingList.WaitingListRecyclerViewAdapter
 import kotlinx.android.synthetic.main.fragment_waiting.*
 

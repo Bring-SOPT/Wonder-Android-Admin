@@ -5,9 +5,16 @@ import android.os.Bundle
 import android.view.View
 import android.widget.RelativeLayout
 import com.wonder.bring.wonderandroidowner.MainFragments.MainFragmentStatePagerAdapter
+import com.wonder.bring.wonderandroidowner.Network.ApplicationController
+import com.wonder.bring.wonderandroidowner.Network.NetworkService
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+
+    // 보미 서버 통신
+    val networkService: NetworkService by lazy {
+        ApplicationController.instance.networkService
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -15,6 +22,12 @@ class MainActivity : AppCompatActivity() {
 
         configureBottomNavigation()
     }
+
+    private fun variableInit(){
+
+    }
+
+
 
     private fun configureBottomNavigation(){
         vp_main_act_frag_pager.adapter = MainFragmentStatePagerAdapter(supportFragmentManager, 3)
