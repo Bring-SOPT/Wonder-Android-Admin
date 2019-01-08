@@ -7,9 +7,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.wonder.bring.wonderandroidowner.DoneList.DoneListRecyclerViewAdapter
+import com.wonder.bring.wonderandroidowner.Network.Get.FirstMenu
 import com.wonder.bring.wonderandroidowner.Network.Get.OrderListData
 import com.wonder.bring.wonderandroidowner.R
 import kotlinx.android.synthetic.main.fragment_done.*
+import java.util.*
 
 class DoneFragment : Fragment(){
 
@@ -41,46 +43,37 @@ class DoneFragment : Fragment(){
 
         dataList.add(
             OrderListData(
-                "2018.12.29",
-                "14:06",
+                20,
+                "daye",
                 1,
-                "최재영",
-                "아메리카노 ICE (Regular / 1개)",
-                5000,
-                "요청사항요청사항요청사항요청사항요청사항요청사항요청사항요청사항요청사항"
-            )
-        )
-        dataList.add(
-            OrderListData(
-                "2018.12.29",
-                "14:08",
+                Date("2019-01-04 16:12:25"),
+                13000,
                 2,
-                "모메",
-                "아메리카노 ICE (Regular / 5개)",
-                25000,
-                "요청사항요청사항요청사항요청사항요청사항요청사항요청사항요청사항요청사항"
+                FirstMenu(
+                    "소시지 인 치즈 베이글",
+                    4,
+                    2,
+                    5000,
+                    "오늘도 맛있는 음식을 위해 고생하시는 모든 분께 감사인사 드려요^^,,"
+                )
             )
         )
+
         dataList.add(
             OrderListData(
-                "2018.12.29",
-                "14:10",
-                3,
-                "진상1",
-                "카페라떼 ICE (Regular / 1개)",
-                5500,
-                "카페라떼에 우유빼고 주세요 당연히 이날씨에 차가운거 안먹겟죠 따뜻한 아이스 카페라떼 준비해주세요 ^^"
-            )
-        )
-        dataList.add(
-            OrderListData(
-                "2019.01.01",
-                "01:23",
-                4,
-                "진상2",
-                "스무디 (Regular / 2개)",
-                12000,
-                "차가운거 말고 따듯한 스무디로 해주세요^^ "
+                29,
+                "bogum",
+                0,
+                Date("2019-01-06 20:45:58"),
+                19600,
+                1,
+                FirstMenu(
+                    "카페모카ICE",
+                    2,
+                    2,
+                    9800,
+                    "좋아요~"
+                )
             )
         )
     }
