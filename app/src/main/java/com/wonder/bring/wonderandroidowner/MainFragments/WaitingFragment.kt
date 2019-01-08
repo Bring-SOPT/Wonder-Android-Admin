@@ -11,6 +11,7 @@ import com.wonder.bring.wonderandroidowner.R
 import com.wonder.bring.wonderandroidowner.Network.Get.OrderListData
 import com.wonder.bring.wonderandroidowner.WaitingList.WaitingListRecyclerViewAdapter
 import kotlinx.android.synthetic.main.fragment_waiting.*
+import java.text.SimpleDateFormat
 import java.util.*
 
 class WaitingFragment : Fragment() {
@@ -39,12 +40,14 @@ class WaitingFragment : Fragment() {
     private fun setTempData(){
         //임시데이터
 
+        var format = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+        var date: Date = format.parse("2019-01-04 16:12:25")
         dataList.add(
             OrderListData(
                 20,
                 "daye",
                 1,
-                Date("2019-01-04 16:12:25"),
+                date,
                 13000,
                 2,
                 FirstMenu(
@@ -57,12 +60,13 @@ class WaitingFragment : Fragment() {
             )
         )
 
+        date = format.parse("2019-01-06 20:45:58")
         dataList.add(
             OrderListData(
                 29,
                 "bogum",
                 0,
-                Date("2019-01-06 20:45:58"),
+                date,
                 19600,
                 1,
                 FirstMenu(
