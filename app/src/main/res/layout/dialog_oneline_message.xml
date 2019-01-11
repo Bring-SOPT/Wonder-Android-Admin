@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+                                             xmlns:app="http://schemas.android.com/apk/res-auto"
+                                             xmlns:tools="http://schemas.android.com/tools" android:layout_width="300dp"
+                                             android:layout_height="120dp" android:background="@drawable/order_confirm_toast_message">
+
+
+    <TextView
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:text="주문 접수 알림이 전송되었습니다."
+
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginTop="48dp"
+            app:layout_constraintEnd_toEndOf="parent" android:id="@+id/tv_oneline_message_dialog_message"/>
+</android.support.constraint.ConstraintLayout>
