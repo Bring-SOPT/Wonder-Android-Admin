@@ -10,10 +10,13 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import com.wonder.bring.wonderandroidowner.MainActivity
 import com.wonder.bring.wonderandroidowner.Network.Get.OrderListData
 import com.wonder.bring.wonderandroidowner.R
 import com.wonder.bring.wonderandroidowner.SizeConvertor
 import com.wonder.bring.wonderandroidowner.WaitingList.OneLineMessageDialog
+import org.jetbrains.anko.backgroundColorResource
+import org.jetbrains.anko.backgroundResource
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -51,10 +54,18 @@ class OngoingListRecyclerViewAdapter(val ctx: Context, val dataList: ArrayList<O
             customToast()
 
             holder.btn_ready.isEnabled = false
+            holder.btn_ready.backgroundResource = R.drawable.delivery_complete
+
             holder.btn_gave.isEnabled = true
+            holder.btn_gave.backgroundResource = R.drawable.waiting_order_border
         }
 
         holder.btn_gave.setOnClickListener {
+
+            //메인액티비티에 있는 callDoneAddRVItem 메소드를 호출
+            //그럼 액티비티에서는 DoneFragment에 있는 addRVItem 함수를 호출함
+            (ctx as MainActivity).callDoneAddRVItem(dataList[position])
+
             dataList.removeAt(position)
             notifyItemRemoved(position)
             notifyItemRangeChanged(position,dataList.size)

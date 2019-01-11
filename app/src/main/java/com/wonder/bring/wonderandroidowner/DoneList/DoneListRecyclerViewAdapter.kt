@@ -54,4 +54,10 @@ class DoneListRecyclerViewAdapter(var ctx: Context, val dataList: ArrayList<Orde
         var tv_request: TextView = itemView.findViewById(R.id.tv_rvitem_done_request)
 
     }
+
+    fun insertRVItem(item: OrderListData){
+        val positon : Int = dataList.size
+        dataList.add(item)
+        notifyItemInserted(positon)
+    }
 }

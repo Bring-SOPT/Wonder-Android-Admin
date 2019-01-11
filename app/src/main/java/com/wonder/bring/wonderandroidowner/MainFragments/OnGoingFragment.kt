@@ -74,12 +74,11 @@ class OnGoingFragment : Fragment() {
 
     }
 
-    //리사이클러뷰 어뎁터 안에 있는 아이템 추가 함수를 호출함
+    //리사이클러뷰 어뎁터 안에 있는 아이템 삽입 함수를 호출함
     fun addRVItem(item: OrderListData) {
-
         ongoingListRecyclerViewAdapter.insertRVItem(item)
     }
 
-    
+
 
 }

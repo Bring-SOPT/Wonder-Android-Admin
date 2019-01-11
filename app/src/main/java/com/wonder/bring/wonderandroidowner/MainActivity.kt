@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.RelativeLayout
+import com.wonder.bring.wonderandroidowner.MainFragments.DoneFragment
 import com.wonder.bring.wonderandroidowner.MainFragments.MainFragmentStatePagerAdapter
 import com.wonder.bring.wonderandroidowner.MainFragments.OnGoingFragment
 import com.wonder.bring.wonderandroidowner.Network.ApplicationController
@@ -127,8 +128,12 @@ class MainActivity : AppCompatActivity() {
     //뷰페이저 어뎁터를 통해 ongoing fragment의 인스턴스를 얻어오고, 그 인스턴스를 캐스팅한후
     //ongoing fragment에 있는 함수인 addRVItem을 호출함
     //그럼 이제 ongoing fragment의 리사이클러 뷰에 아이템이 내려꽂힘.
-    fun callOnGoingAddRVItem(item: OrderListData){
-
+    fun callOnGoingAddRVItem(item: OrderListData) {
         (viewPagerAdapter.getItem(1) as OnGoingFragment).addRVItem(item)
+    }
+
+    //위와 같은 로직으로 동작함.
+    fun callDoneAddRVItem(item: OrderListData) {
+        (viewPagerAdapter.getItem(2) as DoneFragment).addRVItem(item)
     }
 }
