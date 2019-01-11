@@ -42,7 +42,7 @@ class OngoingListRecyclerViewAdapter(val ctx: Context, val dataList: ArrayList<O
         holder.tv_menu.text = dataList[position].firstMenu.menuName
         holder.tv_sizeAmount.text =
                 (SizeConvertor.parseSizeString(dataList[position].firstMenu.size) + " / " + dataList[position].firstMenu.orderCount+"개")
-        holder
+
         holder.tv_cost.text = (dataList[position].firstMenu.menuCountPrice.toString() + "원")
         holder.tv_request.text = dataList[position].firstMenu.memo
 
@@ -89,4 +89,11 @@ class OngoingListRecyclerViewAdapter(val ctx: Context, val dataList: ArrayList<O
         toast.show()
 
     }
+
+    fun insertRVItem(item: OrderListData){
+        val positon : Int = dataList.size
+        dataList.add(item)
+        notifyItemInserted(positon)
+    }
+
 }

@@ -12,16 +12,17 @@ import com.wonder.bring.wonderandroidowner.OngoingList.OngoingListRecyclerViewAd
 import com.wonder.bring.wonderandroidowner.Network.Get.OrderListData
 import com.wonder.bring.wonderandroidowner.R
 import kotlinx.android.synthetic.main.fragment_ongoing.*
+import org.jetbrains.anko.support.v4.toast
 import java.text.SimpleDateFormat
 import java.util.*
 
 class OnGoingFragment : Fragment() {
 
     companion object {
-        private var instance :OnGoingFragment? = null
+        private var instance: OnGoingFragment? = null
         @Synchronized
-        fun getInstance(data:ArrayList<OrderListData>) : OnGoingFragment{
-            if (instance == null){
+        fun getInstance(data: ArrayList<OrderListData>): OnGoingFragment {
+            if (instance == null) {
                 instance = OnGoingFragment().apply {
                     arguments = Bundle().apply {
                         putSerializable("data", data)
@@ -30,6 +31,8 @@ class OnGoingFragment : Fragment() {
             }
             return instance!!
         }
+
+
     }
 
     lateinit var ongoingListRecyclerViewAdapter: OngoingListRecyclerViewAdapter
@@ -43,7 +46,7 @@ class OnGoingFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-        return inflater.inflate(R.layout.fragment_ongoing,container,false)
+        return inflater.inflate(R.layout.fragment_ongoing, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -54,7 +57,7 @@ class OnGoingFragment : Fragment() {
 
     private fun setRecyclerView() {
         //setTempData()
-        ongoingListRecyclerViewAdapter = OngoingListRecyclerViewAdapter(activity!!,dataList)
+        ongoingListRecyclerViewAdapter = OngoingListRecyclerViewAdapter(activity!!, dataList)
         rv_ongoing_frag_list.adapter = ongoingListRecyclerViewAdapter
         rv_ongoing_frag_list.layoutManager = LinearLayoutManager(activity)
 
@@ -70,49 +73,13 @@ class OnGoingFragment : Fragment() {
 
 
     }
-    private fun setTempData(){
-        //임시데이터
 
-        var date = "2019-01-04 16:12:25"
+    //리사이클러뷰 어뎁터 안에 있는 아이템 추가 함수를 호출함
+    fun addRVItem(item: OrderListData) {
 
-
-        //var format = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
-        //var date: Date = format.parse("2019-01-04 16:12:25")
-        dataList.add(
-            OrderListData(
-                20,
-                "daye",
-                1,
-                date,
-                13000,
-                2,
-                FirstMenu(
-                    "소시지 인 치즈 베이글",
-                    4,
-                    2,
-                    5000,
-                    "오늘도 맛있는 음식을 위해 고생하시는 모든 분께 감사인사 드려요^^,,"
-                )
-            )
-        )
-
-        //date = format.parse("2019-01-06 20:45:58")
-        dataList.add(
-            OrderListData(
-                29,
-                "bogum",
-                0,
-                date,
-                19600,
-                1,
-                FirstMenu(
-                    "카페모카ICE",
-                    2,
-                    2,
-                    9800,
-                    "좋아요~"
-                )
-            )
-        )
+        ongoingListRecyclerViewAdapter.insertRVItem(item)
     }
+
+    
+
 }

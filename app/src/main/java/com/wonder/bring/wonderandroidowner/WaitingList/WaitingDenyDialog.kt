@@ -13,14 +13,15 @@ import android.widget.Toast
 import com.wonder.bring.wonderandroidowner.R
 import kotlinx.android.synthetic.main.dialog_waiting_deny.*
 
-class WaitingDenyDialog(var ctx: Context): Dialog(ctx){
+class WaitingDenyDialog(var ctx: Context, val rvAdapter: WaitingListRecyclerViewAdapter, val position: Int) :
+    Dialog(ctx) {
 
-    var btn_type : Int = -1
+    var btn_type: Int = -1
 
-    val OUT_OF_STOCK : Int = 0
-    val ORDER_DELAY : Int = 1
-    val USER_INFO_INCORRECT : Int = 2
-    val STORE_END : Int = 3
+    val OUT_OF_STOCK: Int = 0
+    val ORDER_DELAY: Int = 1
+    val USER_INFO_INCORRECT: Int = 2
+    val STORE_END: Int = 3
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,14 +34,14 @@ class WaitingDenyDialog(var ctx: Context): Dialog(ctx){
 
     }
 
-    private fun initOnClickListener(){
+    private fun initOnClickListener() {
 
         et_waiting_deny_dialog_direct.addTextChangedListener(
             object : TextWatcher {
                 override fun afterTextChanged(p0: Editable?) {
-                    if(et_waiting_deny_dialog_direct.text.toString().equals("")){
+                    if (et_waiting_deny_dialog_direct.text.toString().equals("")) {
                         btn_waiting_deny_dialog_direct.isEnabled = false
-                    }else{
+                    } else {
                         btn_waiting_deny_dialog_direct.isEnabled = true
                     }
                 }
@@ -60,6 +61,7 @@ class WaitingDenyDialog(var ctx: Context): Dialog(ctx){
             //버튼누르면 현재 다이얼로그 꺼지고 푸시알림 전송되었다는 다이얼로그 띄우기
             dismiss()
             customToast()
+            deleteRVItem()
         }
 
         //주문 지연 버튼 클릭시
@@ -69,6 +71,7 @@ class WaitingDenyDialog(var ctx: Context): Dialog(ctx){
             //버튼누르면 현재 다이얼로그 꺼지고 푸시알림 전송되었다는 다이얼로그 띄우기
             dismiss()
             customToast()
+            deleteRVItem()
         }
 
         //고객정보 불활실 버튼 클릭시
@@ -78,6 +81,7 @@ class WaitingDenyDialog(var ctx: Context): Dialog(ctx){
             //버튼누르면 현재 다이얼로그 꺼지고 푸시알림 전송되었다는 다이얼로그 띄우기
             dismiss()
             customToast()
+            deleteRVItem()
         }
 
         //영업 종료 버튼 클릭시
@@ -87,27 +91,33 @@ class WaitingDenyDialog(var ctx: Context): Dialog(ctx){
             //버튼누르면 현재 다이얼로그 꺼지고 푸시알림 전송되었다는 다이얼로그 띄우기
             dismiss()
             customToast()
+            deleteRVItem()
         }
 
         btn_waiting_deny_dialog_direct.setOnClickListener {
             dismiss()
             customToast()
+            deleteRVItem()
         }
 
 
     }
 
-    private fun customToast(){
+    private fun customToast() {
 
-        var toast = Toast.makeText(ctx,"주문 거절 알림이 전송되었습니다.", Toast.LENGTH_SHORT)
-        toast.setGravity(Gravity.CENTER,0,0)
+        var toast = Toast.makeText(ctx, "주문 거절 알림이 전송되었습니다.", Toast.LENGTH_SHORT)
+        toast.setGravity(Gravity.CENTER, 0, 0)
 
         var group: ViewGroup = toast.view as ViewGroup
 
-        var tv : TextView = group.getChildAt(0) as TextView
+        var tv: TextView = group.getChildAt(0) as TextView
         tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 24f)
 
         toast.show()
 
+    }
+
+    fun deleteRVItem() {
+        rvAdapter.deleteItem(position)
     }
 }

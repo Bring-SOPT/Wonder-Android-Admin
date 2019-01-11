@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.View
 import android.widget.RelativeLayout
 import com.wonder.bring.wonderandroidowner.MainFragments.MainFragmentStatePagerAdapter
+import com.wonder.bring.wonderandroidowner.MainFragments.OnGoingFragment
 import com.wonder.bring.wonderandroidowner.Network.ApplicationController
 import com.wonder.bring.wonderandroidowner.Network.Get.GetAllOrderListResponseData
 import com.wonder.bring.wonderandroidowner.Network.Get.OrderListData
@@ -24,6 +25,8 @@ class MainActivity : AppCompatActivity() {
     var waitingOrderList: ArrayList<OrderListData> = ArrayList()
     var ongoingOrderList: ArrayList<OrderListData> = ArrayList()
     var doneOrderList: ArrayList<OrderListData> = ArrayList()
+
+    lateinit var viewPagerAdapter: MainFragmentStatePagerAdapter
 
     // 보미 서버 통신
     val networkService: NetworkService by lazy {
@@ -89,20 +92,22 @@ class MainActivity : AppCompatActivity() {
                         configureBottomNavigation()
                     }
                 }
-
             })
 
     }
 
 
     private fun configureBottomNavigation() {
-        vp_main_act_frag_pager.adapter = MainFragmentStatePagerAdapter(
+
+        viewPagerAdapter = MainFragmentStatePagerAdapter(
             supportFragmentManager,
             3,
             waitingOrderList,
             ongoingOrderList,
             doneOrderList
         )
+
+        vp_main_act_frag_pager.adapter = viewPagerAdapter
         vp_main_act_frag_pager.offscreenPageLimit = 3
 
         // ViewPager와 Tablayout을 엮어줍니다!
@@ -116,5 +121,14 @@ class MainActivity : AppCompatActivity() {
                 bottomNaviLayout.findViewById(R.id.btn_bottom_navi_map_tab) as RelativeLayout
         tl_main_act_top_menu.getTabAt(2)!!.customView =
                 bottomNaviLayout.findViewById(R.id.btn_bottom_navi_my_page_tab) as RelativeLayout
+    }
+
+
+    //뷰페이저 어뎁터를 통해 ongoing fragment의 인스턴스를 얻어오고, 그 인스턴스를 캐스팅한후
+    //ongoing fragment에 있는 함수인 addRVItem을 호출함
+    //그럼 이제 ongoing fragment의 리사이클러 뷰에 아이템이 내려꽂힘.
+    fun callOnGoingAddRVItem(item: OrderListData){
+
+        (viewPagerAdapter.getItem(1) as OnGoingFragment).addRVItem(item)
     }
 }

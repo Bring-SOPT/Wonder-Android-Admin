@@ -37,18 +37,18 @@ class WaitingListRecyclerViewAdapter(var ctx: Context, val dataList: ArrayList<O
         holder.tv_nickname.text = dataList[position].nick
         holder.tv_menu.text = dataList[position].firstMenu.menuName
         holder.tv_sizeAmount.text =
-                (SizeConvertor.parseSizeString(dataList[position].firstMenu.size) + " / " + dataList[position].firstMenu.orderCount+"개")
+                (SizeConvertor.parseSizeString(dataList[position].firstMenu.size) + " / " + dataList[position].firstMenu.orderCount + "개")
 
         holder.tv_cost.text = (dataList[position].firstMenu.menuCountPrice.toString() + "원")
         holder.tv_request.text = dataList[position].firstMenu.memo
 
         holder.btn_accept.setOnClickListener {
-            val waitingAcceptDialog = WaitingAcceptDialog(ctx)
+            val waitingAcceptDialog = WaitingAcceptDialog(ctx, this, position)
             waitingAcceptDialog.show()
         }
 
         holder.btn_deny.setOnClickListener {
-            val waitingDenyDialog = WaitingDenyDialog(ctx)
+            val waitingDenyDialog = WaitingDenyDialog(ctx, this, position)
             waitingDenyDialog.show()
         }
     }
@@ -65,5 +65,12 @@ class WaitingListRecyclerViewAdapter(var ctx: Context, val dataList: ArrayList<O
 
         var btn_accept: Button = itemView.findViewById(R.id.btn_rvitem_waiting_accept)
         var btn_deny: Button = itemView.findViewById(R.id.btn_rvitem_waiting_deny)
+    }
+
+    fun deleteItem(position: Int) {
+
+        dataList.removeAt(position)
+        notifyItemRemoved(position)
+        notifyItemRangeChanged(position, dataList.size)
     }
 }

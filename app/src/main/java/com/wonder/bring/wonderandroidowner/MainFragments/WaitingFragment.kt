@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.wonder.bring.wonderandroidowner.MainActivity
 import com.wonder.bring.wonderandroidowner.Network.Get.FirstMenu
 import com.wonder.bring.wonderandroidowner.R
 import com.wonder.bring.wonderandroidowner.Network.Get.OrderListData
@@ -44,6 +45,7 @@ class WaitingFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         return inflater.inflate(R.layout.fragment_waiting, container, false)
+
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -69,52 +71,8 @@ class WaitingFragment : Fragment() {
         Log.v("Malibin Debug", "waiting fragment에 온 데이터" + dataList.toString())
 
 
+        //(activity as MainActivity).callOnGoingMethod()
     }
 
-    private fun setTempData() {
-        //임시데이터
 
-        var date = "2019-01-04 16:12:25"
-
-        //var format = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
-        //var date: Date = format.parse("2019-01-04 16:12:25")
-        dataList.add(
-            OrderListData(
-                20,
-                "daye",
-                1,
-                date,
-                13000,
-                2,
-                FirstMenu(
-                    "소시지 인 치즈 베이글",
-                    4,
-                    2,
-                    5000,
-                    "오늘도 맛있는 음식을 위해 고생하시는 모든 분께 감사인사 드려요^^,,"
-                )
-            )
-        )
-
-        //date = format.parse("2019-01-06 20:45:58")
-        dataList.add(
-            OrderListData(
-                29,
-                "bogum",
-                0,
-                date,
-                19600,
-                1,
-                FirstMenu(
-                    "카페모카ICE",
-                    2,
-                    2,
-                    9800,
-                    "좋아요~"
-                )
-            )
-        )
-
-
-    }
 }
