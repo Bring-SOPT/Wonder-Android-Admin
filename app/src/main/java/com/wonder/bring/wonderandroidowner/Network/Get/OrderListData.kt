@@ -6,7 +6,7 @@ data class OrderListData(
     var orderListIdx: Int,
     var nick: String,
     var state: Int,
-    var time: Date,
+    var time: String,
     var totalPrice: Int,
     var totalCount: Int,
     var firstMenu: FirstMenu

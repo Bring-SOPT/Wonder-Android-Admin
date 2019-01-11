@@ -3,6 +3,7 @@ package com.wonder.bring.wonderandroidowner.MainFragments
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,8 +17,29 @@ import java.util.*
 
 class OnGoingFragment : Fragment() {
 
+    companion object {
+        private var instance :OnGoingFragment? = null
+        @Synchronized
+        fun getInstance(data:ArrayList<OrderListData>) : OnGoingFragment{
+            if (instance == null){
+                instance = OnGoingFragment().apply {
+                    arguments = Bundle().apply {
+                        putSerializable("data", data)
+                    }
+                }
+            }
+            return instance!!
+        }
+    }
+
     lateinit var ongoingListRecyclerViewAdapter: OngoingListRecyclerViewAdapter
     var dataList: ArrayList<OrderListData> = ArrayList()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        setData()
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
@@ -31,18 +53,31 @@ class OnGoingFragment : Fragment() {
     }
 
     private fun setRecyclerView() {
-        setTempData()
+        //setTempData()
         ongoingListRecyclerViewAdapter = OngoingListRecyclerViewAdapter(activity!!,dataList)
         rv_ongoing_frag_list.adapter = ongoingListRecyclerViewAdapter
         rv_ongoing_frag_list.layoutManager = LinearLayoutManager(activity)
 
     }
 
+    private fun setData() {
+        arguments?.let {
+            dataList = it.getSerializable("data") as ArrayList<OrderListData>
+            Log.v("Malibin Debug", "ongoing fragment에 온 데이터 아규먼트가 널이니??" + dataList.toString())
+        }
+
+        Log.v("Malibin Debug", "ongoing fragment에 온 데이터" + dataList.toString())
+
+
+    }
     private fun setTempData(){
         //임시데이터
 
-        var format = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
-        var date: Date = format.parse("2019-01-04 16:12:25")
+        var date = "2019-01-04 16:12:25"
+
+
+        //var format = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+        //var date: Date = format.parse("2019-01-04 16:12:25")
         dataList.add(
             OrderListData(
                 20,
@@ -61,7 +96,7 @@ class OnGoingFragment : Fragment() {
             )
         )
 
-        date = format.parse("2019-01-06 20:45:58")
+        //date = format.parse("2019-01-06 20:45:58")
         dataList.add(
             OrderListData(
                 29,

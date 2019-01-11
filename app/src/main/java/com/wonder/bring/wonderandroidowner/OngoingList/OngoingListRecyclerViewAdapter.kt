@@ -2,14 +2,18 @@ package com.wonder.bring.wonderandroidowner.OngoingList
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
+import android.util.TypedValue
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import com.wonder.bring.wonderandroidowner.Network.Get.OrderListData
 import com.wonder.bring.wonderandroidowner.R
 import com.wonder.bring.wonderandroidowner.WaitingList.OneLineMessageDialog
+import java.text.SimpleDateFormat
 import java.util.*
 
 
@@ -23,26 +27,15 @@ class OngoingListRecyclerViewAdapter(val ctx: Context, val dataList: ArrayList<O
     override fun getItemCount(): Int = dataList.size
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        var date: Date = dataList[position].time
 
-        var month = date.month.toString()
-        if (date.month < 10)
-            month = ("0" + month)
+        var date: Date = SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(dataList[position].time)
 
-        var day = date.day.toString()
-        if (date.day < 10)
-            day = ("0" + day)
+        var orderDate = SimpleDateFormat("yyyy.MM.dd").format(date)
+        var orderTime = SimpleDateFormat("MM:ss").format(date)
 
-        var hour = date.hours.toString()
-        if (date.hours < 10)
-            hour = ("0" + hour)
+        holder.tv_date.text = orderDate
+        holder.tv_time.text = orderTime
 
-        var minute = date.minutes.toString()
-        if (date.minutes < 10)
-            minute = ("0" + minute)
-
-        holder.tv_date.text = (date.year.toString() + "." + month + "." + day)
-        holder.tv_time.text = ("$hour:$minute")
         holder.tv_orderNum.text = dataList[position].orderListIdx.toString()
         holder.tv_nickname.text = dataList[position].nick
         holder.tv_menu.text = dataList[position].firstMenu.menuName
@@ -51,8 +44,8 @@ class OngoingListRecyclerViewAdapter(val ctx: Context, val dataList: ArrayList<O
         holder.tv_request.text = dataList[position].firstMenu.memo
 
         holder.btn_ready.setOnClickListener {
-            val oneLineMessageDialog = OneLineMessageDialog(ctx, "제조 완료 알림이 전송되었습니다.")
-            oneLineMessageDialog.show()
+
+            customToast()
 
             holder.btn_ready.isEnabled = false
             holder.btn_gave.isEnabled = true
@@ -78,5 +71,19 @@ class OngoingListRecyclerViewAdapter(val ctx: Context, val dataList: ArrayList<O
 
         var btn_ready: Button = itemView.findViewById(R.id.btn_rvitem_ongoing_ready)
         var btn_gave: Button = itemView.findViewById(R.id.btn_rvitem_ongoing_gave)
+    }
+
+    private fun customToast(){
+
+        var toast = Toast.makeText(ctx,"제조 완료 알림이 전송되었습니다.", Toast.LENGTH_SHORT)
+        toast.setGravity(Gravity.CENTER,0,0)
+
+        var group: ViewGroup = toast.view as ViewGroup
+
+        var tv : TextView = group.getChildAt(0) as TextView
+        tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 24f)
+
+        toast.show()
+
     }
 }

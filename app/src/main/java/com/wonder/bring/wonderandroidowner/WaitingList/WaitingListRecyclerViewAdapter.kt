@@ -9,6 +9,7 @@ import android.widget.Button
 import android.widget.TextView
 import com.wonder.bring.wonderandroidowner.Network.Get.OrderListData
 import com.wonder.bring.wonderandroidowner.R
+import java.text.SimpleDateFormat
 import java.util.*
 
 class WaitingListRecyclerViewAdapter(var ctx: Context, val dataList: ArrayList<OrderListData>) :
@@ -23,30 +24,18 @@ class WaitingListRecyclerViewAdapter(var ctx: Context, val dataList: ArrayList<O
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
 
-        var date: Date = dataList[position].time
+        var date: Date = SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(dataList[position].time)
 
-        var month = date.month.toString()
-        if (date.month < 10)
-            month = ("0" + month)
+        var orderDate = SimpleDateFormat("yyyy.MM.dd").format(date)
+        var orderTime = SimpleDateFormat("MM:ss").format(date)
 
-        var day = date.day.toString()
-        if (date.day < 10)
-            day = ("0" + day)
+        holder.tv_date.text = orderDate
+        holder.tv_time.text = orderTime
 
-        var hour = date.hours.toString()
-        if (date.hours < 10)
-            hour = ("0" + hour)
-
-        var minute = date.minutes.toString()
-        if (date.minutes < 10)
-            minute = ("0" + minute)
-
-        holder.tv_date.text = (date.year.toString() + "." + month + "." + day)
-        holder.tv_time.text = ("$hour:$minute")
         holder.tv_orderNum.text = dataList[position].orderListIdx.toString()
         holder.tv_nickname.text = dataList[position].nick
         holder.tv_menu.text = dataList[position].firstMenu.menuName
-        holder
+
         holder.tv_cost.text = (dataList[position].firstMenu.menuCountPrice.toString() + "원")
         holder.tv_request.text = dataList[position].firstMenu.memo
 

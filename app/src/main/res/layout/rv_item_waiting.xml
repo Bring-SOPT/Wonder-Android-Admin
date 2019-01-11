@@ -144,5 +144,5 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="49dp" android:layout_marginRight="49dp"
-            android:clickable="false" android:enabled="false"/>
+            />
 </android.support.constraint.ConstraintLayout>

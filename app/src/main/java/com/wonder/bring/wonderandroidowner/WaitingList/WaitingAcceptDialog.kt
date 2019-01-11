@@ -3,15 +3,20 @@ package com.wonder.bring.wonderandroidowner.WaitingList
 import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
-import android.support.v7.app.AlertDialog
+import android.text.Editable
+import android.text.TextWatcher
+import android.util.TypedValue
+import android.view.Gravity
+import android.view.ViewGroup
+import android.widget.TextView
+import android.widget.Toast
 import com.wonder.bring.wonderandroidowner.R
 import kotlinx.android.synthetic.main.dialog_waiting_accept.*
 
-class WaitingAcceptDialog(ctx: Context): Dialog(ctx){
+class WaitingAcceptDialog(var ctx: Context): Dialog(ctx){
 
     var waitTime : Int = 0
 
-    val oneLineMessageDialog = OneLineMessageDialog(ctx,"주문 접수 알림이 전송되었습니다.")
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,9 +24,29 @@ class WaitingAcceptDialog(ctx: Context): Dialog(ctx){
         setContentView(R.layout.dialog_waiting_accept)
         window.setBackgroundDrawableResource(R.color.transparent)
 
+        btn_waiting_accept_dialog_ok.isEnabled = false
+
         initOnClickListener()
     }
     private fun initOnClickListener(){
+
+        et_dialog_waiting_writeminute.addTextChangedListener(
+            object : TextWatcher {
+                override fun afterTextChanged(p0: Editable?) {
+                    if(et_dialog_waiting_writeminute.text.toString().equals("")){
+                        btn_waiting_accept_dialog_ok.isEnabled = false
+                    }else{
+                        btn_waiting_accept_dialog_ok.isEnabled = true
+                    }
+                }
+
+                override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                }
+
+                override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                }
+
+            })
 
         //5분 버튼
         btn_waiting_accept_dialog_5m.setOnClickListener {
@@ -29,7 +54,7 @@ class WaitingAcceptDialog(ctx: Context): Dialog(ctx){
 
             //버튼누르면 현재 다이얼로그 꺼지고 푸시알림 전송되었다는 다이얼로그 띄우기
             dismiss()
-            oneLineMessageDialog.show()
+            customToast()
         }
 
         //10분 버튼
@@ -38,7 +63,7 @@ class WaitingAcceptDialog(ctx: Context): Dialog(ctx){
 
             //버튼누르면 현재 다이얼로그 꺼지고 푸시알림 전송되었다는 다이얼로그 띄우기
             dismiss()
-            oneLineMessageDialog.show()
+            customToast()
         }
 
         //15분 버튼
@@ -47,7 +72,7 @@ class WaitingAcceptDialog(ctx: Context): Dialog(ctx){
 
             //버튼누르면 현재 다이얼로그 꺼지고 푸시알림 전송되었다는 다이얼로그 띄우기
             dismiss()
-            oneLineMessageDialog.show()
+            customToast()
         }
 
         //20분 버튼
@@ -56,7 +81,7 @@ class WaitingAcceptDialog(ctx: Context): Dialog(ctx){
 
             //버튼누르면 현재 다이얼로그 꺼지고 푸시알림 전송되었다는 다이얼로그 띄우기
             dismiss()
-            oneLineMessageDialog.show()
+            customToast()
         }
 
         //25분 버튼
@@ -65,7 +90,7 @@ class WaitingAcceptDialog(ctx: Context): Dialog(ctx){
 
             //버튼누르면 현재 다이얼로그 꺼지고 푸시알림 전송되었다는 다이얼로그 띄우기
             dismiss()
-            oneLineMessageDialog.show()
+            customToast()
         }
 
         //30분 버튼
@@ -74,8 +99,29 @@ class WaitingAcceptDialog(ctx: Context): Dialog(ctx){
 
             //버튼누르면 현재 다이얼로그 꺼지고 푸시알림 전송되었다는 다이얼로그 띄우기
             dismiss()
-            oneLineMessageDialog.show()
+            customToast()
         }
+
+        btn_waiting_accept_dialog_ok.setOnClickListener {
+
+            dismiss()
+            customToast()
+        }
+
+
+    }
+
+    private fun customToast(){
+
+        var toast = Toast.makeText(ctx,"주문 접수 알림이 전송되었습니다.",Toast.LENGTH_SHORT)
+        toast.setGravity(Gravity.CENTER,0,0)
+
+        var group: ViewGroup = toast.view as ViewGroup
+
+        var tv : TextView = group.getChildAt(0) as TextView
+        tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 24f)
+
+        toast.show()
 
     }
 

@@ -15,7 +15,7 @@ interface NetworkService {
     @GET("/stores/{storeIdx}/orderLists")
     fun getAllOrderListRequest(
         @Header("Content-Type") content_type: String,
-        @Path("StoreIdx") storeIdx: Int
+        @Path("storeIdx") storeIdx: Int
     ): Call<GetAllOrderListResponseData>
 
     //주문 상세 내역 조회
