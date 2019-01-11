@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import com.wonder.bring.wonderandroidowner.Network.Get.OrderListData
 import com.wonder.bring.wonderandroidowner.R
+import com.wonder.bring.wonderandroidowner.SizeConvertor
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -30,11 +31,13 @@ class DoneListRecyclerViewAdapter(var ctx: Context, val dataList: ArrayList<Orde
 
         holder.tv_date.text = orderDate
         holder.tv_time.text = orderTime
-
         holder.tv_orderNum.text = dataList[position].orderListIdx.toString()
+
         holder.tv_nickname.text = dataList[position].nick
         holder.tv_menu.text = dataList[position].firstMenu.menuName
-        holder
+        holder.tv_sizeAmount.text =
+                (SizeConvertor.parseSizeString(dataList[position].firstMenu.size) + " / " + dataList[position].firstMenu.orderCount+"개")
+
         holder.tv_cost.text = (dataList[position].firstMenu.menuCountPrice.toString() + "원")
         holder.tv_request.text = dataList[position].firstMenu.memo
 
