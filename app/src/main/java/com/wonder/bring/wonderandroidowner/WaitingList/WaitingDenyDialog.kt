@@ -5,23 +5,32 @@ import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.util.TypedValue
 import android.view.Gravity
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import com.wonder.bring.wonderandroidowner.MainActivity
+import com.wonder.bring.wonderandroidowner.Network.ApplicationController
+import com.wonder.bring.wonderandroidowner.Network.Get.GetChangeServerStatusResponseData
+import com.wonder.bring.wonderandroidowner.Network.NetworkService
 import com.wonder.bring.wonderandroidowner.R
 import kotlinx.android.synthetic.main.dialog_waiting_deny.*
+import org.jetbrains.anko.toast
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class WaitingDenyDialog(var ctx: Context, val rvAdapter: WaitingListRecyclerViewAdapter, val position: Int) :
     Dialog(ctx) {
 
-    var btn_type: Int = -1
+    var btn_type: String = ""
 
-    val OUT_OF_STOCK: Int = 0
-    val ORDER_DELAY: Int = 1
-    val USER_INFO_INCORRECT: Int = 2
-    val STORE_END: Int = 3
+    val OUT_OF_STOCK: String = "재료 소진"
+    val ORDER_DELAY: String = "주문 지연"
+    val USER_INFO_INCORRECT: String = "고객 정보 부정확"
+    val STORE_END: String = "영업 종료"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +41,11 @@ class WaitingDenyDialog(var ctx: Context, val rvAdapter: WaitingListRecyclerView
 
         btn_waiting_deny_dialog_direct.isEnabled = false
 
+    }
+
+    // 보미 서버 통신
+    val networkService: NetworkService by lazy {
+        ApplicationController.instance.networkService
     }
 
     private fun initOnClickListener() {
@@ -60,8 +74,7 @@ class WaitingDenyDialog(var ctx: Context, val rvAdapter: WaitingListRecyclerView
 
             //버튼누르면 현재 다이얼로그 꺼지고 푸시알림 전송되었다는 다이얼로그 띄우기
             dismiss()
-            customToast()
-            deleteRVItem()
+            changeServerStatus(btn_type)
         }
 
         //주문 지연 버튼 클릭시
@@ -70,8 +83,7 @@ class WaitingDenyDialog(var ctx: Context, val rvAdapter: WaitingListRecyclerView
 
             //버튼누르면 현재 다이얼로그 꺼지고 푸시알림 전송되었다는 다이얼로그 띄우기
             dismiss()
-            customToast()
-            deleteRVItem()
+            changeServerStatus(btn_type)
         }
 
         //고객정보 불활실 버튼 클릭시
@@ -80,8 +92,7 @@ class WaitingDenyDialog(var ctx: Context, val rvAdapter: WaitingListRecyclerView
 
             //버튼누르면 현재 다이얼로그 꺼지고 푸시알림 전송되었다는 다이얼로그 띄우기
             dismiss()
-            customToast()
-            deleteRVItem()
+            changeServerStatus(btn_type)
         }
 
         //영업 종료 버튼 클릭시
@@ -90,14 +101,12 @@ class WaitingDenyDialog(var ctx: Context, val rvAdapter: WaitingListRecyclerView
 
             //버튼누르면 현재 다이얼로그 꺼지고 푸시알림 전송되었다는 다이얼로그 띄우기
             dismiss()
-            customToast()
-            deleteRVItem()
+            changeServerStatus(btn_type)
         }
 
         btn_waiting_deny_dialog_direct.setOnClickListener {
             dismiss()
-            customToast()
-            deleteRVItem()
+            changeServerStatus(et_waiting_deny_dialog_direct.text.toString())
         }
 
 
@@ -119,5 +128,45 @@ class WaitingDenyDialog(var ctx: Context, val rvAdapter: WaitingListRecyclerView
 
     fun deleteRVItem() {
         rvAdapter.deleteItem(position)
+    }
+
+    fun changeServerStatus(res: String) {
+
+        Log.v(
+            "Malibin Debug",
+            "내가 요청한 값들 : res = $res storeIdx = " + MainActivity.storeIdx + " orderIdx = " + rvAdapter.dataList[position].orderListIdx
+        )
+
+        networkService.getChangeServerStatusRequest(
+            "application/json",
+            MainActivity.storeIdx,
+            rvAdapter.dataList[position].orderListIdx,
+            4, //이 다이얼로그는 애초에 거절을 눌럿을때만 실행되니 4로 고정이다.
+            res
+        ).enqueue(object : Callback<GetChangeServerStatusResponseData> {
+            override fun onFailure(call: Call<GetChangeServerStatusResponseData>, t: Throwable) {
+                ctx.toast("서버 통신에 실패하였습니다")
+            }
+
+            override fun onResponse(
+                call: Call<GetChangeServerStatusResponseData>,
+                response: Response<GetChangeServerStatusResponseData>
+            ) {
+                if (response.isSuccessful) {
+
+                    var branch: Int = response.body()!!.status
+
+                    when (branch) {
+                        200 -> {
+                            Log.v("Malibin Debug", "서버 상태변경 성공")
+                            //상태변경 성공인경우
+                            customToast()
+                            deleteRVItem()
+                        }
+                    }
+                }
+            }
+
+        })
     }
 }
