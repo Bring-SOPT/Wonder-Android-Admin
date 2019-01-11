@@ -2,12 +2,10 @@ package com.wonder.bring.wonderandroidowner.Network
 
 import com.wonder.bring.wonderandroidowner.Network.Get.GetAllOrderListResponseData
 import com.wonder.bring.wonderandroidowner.Network.Get.GetChangeOrderStatusResponseData
+import com.wonder.bring.wonderandroidowner.Network.Get.GetChangeServerStatusResponseData
 import com.wonder.bring.wonderandroidowner.Network.Get.GetOrderDetailResponseData
 import retrofit2.Call
-import retrofit2.http.GET
-import retrofit2.http.Header
-import retrofit2.http.Path
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface NetworkService {
 
@@ -33,6 +31,25 @@ interface NetworkService {
         @Path("orderIdx") orderIdx: Int,
         @Query("state") state: Int
     ): Call<GetChangeOrderStatusResponseData>
+
+    //서버 상태 바꾸기
+    @PUT("/stores/{storeIdx}/orderLists/{orderIdx}")
+    fun getChangeServerStatusRequest(
+        @Header("Content-Type") content_type: String,
+        @Path("storeIdx") storeIdx: Int,
+        @Path("orderIdx") orderIdx: Int,
+        @Query("state") state: Int,
+        @Query("res") res: String
+    ): Call<GetChangeServerStatusResponseData>
+
+    //서버 상태 바꾸기 2,3일때
+    @PUT("/stores/{storeIdx}/orderLists/{orderIdx}")
+    fun getChangeServerStatus2Request(
+        @Header("Content-Type") content_type: String,
+        @Path("storeIdx") storeIdx: Int,
+        @Path("orderIdx") orderIdx: Int,
+        @Query("state") state: Int
+    ): Call<GetChangeServerStatusResponseData>
 }
 
 //  value   설명

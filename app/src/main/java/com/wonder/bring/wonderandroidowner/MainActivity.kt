@@ -21,7 +21,11 @@ import retrofit2.Response
 class MainActivity : AppCompatActivity() {
 
     //듀듀커피 - 10  니어커피 - 11  탐탐 역삼2호점 - 6   던킨 역삼 4호점 - 5
-    var storeIdx: Int = 11
+    companion object {
+        var storeIdx: Int = 11
+
+    }
+
 
     var waitingOrderList: ArrayList<OrderListData> = ArrayList()
     var ongoingOrderList: ArrayList<OrderListData> = ArrayList()
